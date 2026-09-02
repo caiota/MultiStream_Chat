@@ -88,7 +88,7 @@ if (twitchChannel) {
     twitchFrame.src =
         "https://www.twitch.tv/embed/" +
         encodeURIComponent(twitchChannel) +
-        "/chat?parent=" +
+        "/chat?darkpopout&parent=" +
         encodeURIComponent(parent);
 
 } else {
