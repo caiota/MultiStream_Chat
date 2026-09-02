@@ -1,76 +1,351 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MultiStream Chat</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
-    <main id="app">
+    <!-- =========================
+         TELA DE CONFIGURAÇÃO
+    ========================== -->
 
-        <section class="chat twitch-chat">
+    <div id="setup-screen" class="screen">
 
-            <header class="chat-header twitch-header">
-                <span>🟣</span>
-                <span id="twitch-title">Twitch</span>
-            </header>
+        <div class="setup-card">
 
-            <iframe
-                id="twitch-frame"
-                title="Twitch Chat"
-                allow="autoplay; clipboard-write"
-            ></iframe>
+            <div class="logo">
+                <div class="logo-icon">💬</div>
 
-        </section>
+                <div>
+                    <h1>MultiStream Chat</h1>
+                    <p>Twitch + Kick em um só lugar.</p>
+                </div>
+            </div>
 
+            <div class="welcome">
+                <h2>Bem-vindo! 👋</h2>
 
-        <section class="chat kick-chat">
+                <p>
+                    Configure os canais que você acompanha e tenha
+                    os chats da Twitch e Kick juntos em uma única tela.
+                </p>
 
-            <header class="chat-header kick-header">
-                <span>🟢</span>
-                <span id="kick-title">Kick</span>
-            </header>
-
-            <iframe
-                id="kick-frame"
-                title="Kick Chat"
-            ></iframe>
-
-        </section>
-
-    </main>
+                <span class="free-badge">
+                    ✨ 100% grátis
+                </span>
+            </div>
 
 
-    <div id="message">
+            <!-- TWITCH -->
 
-        <div id="message-content">
+            <div class="platform-config twitch-config">
 
-            <h1>MultiStream Chat</h1>
+                <div class="platform-title twitch-title">
+                    <span class="platform-icon">🟣</span>
 
-            <p>
-                Nenhum canal foi configurado.
-            </p>
+                    <div>
+                        <strong>Twitch</strong>
+                        <small>Chat da Twitch</small>
+                    </div>
+                </div>
 
-            <p>
-                Use:
-            </p>
+                <label for="twitch-input">
+                    Canal
+                </label>
 
-            <code>
-                ?twitch=canal&amp;kick=canal
-            </code>
+                <input
+                    type="text"
+                    id="twitch-input"
+                    placeholder="Nome do canal ou link da Twitch"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+                <div class="config-option">
+
+                    <label class="switch-label">
+
+                        <input
+                            type="checkbox"
+                            id="twitch-dark-mode"
+                            checked
+                        >
+
+                        <span class="switch"></span>
+
+                        <span>
+                            Modo escuro
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- KICK -->
+
+            <div class="platform-config kick-config">
+
+                <div class="platform-title kick-title">
+                    <span class="platform-icon">🟢</span>
+
+                    <div>
+                        <strong>Kick</strong>
+                        <small>Chat da Kick</small>
+                    </div>
+                </div>
+
+                <label for="kick-input">
+                    Canal
+                </label>
+
+                <input
+                    type="text"
+                    id="kick-input"
+                    placeholder="Nome do canal ou link da Kick"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+            </div>
+
+
+            <div id="setup-error" class="setup-error"></div>
+
+
+            <button
+                id="open-chat"
+                class="primary-button"
+            >
+                Abrir MultiChat
+                <span>→</span>
+            </button>
+
+            <div class="setup-footer">
+                Twitch + Kick • Gratuito
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTICHAT
+    ========================== -->
+
+    <div id="chat-screen" class="chat-screen hidden">
+
+        <!-- BARRA SUPERIOR -->
+
+        <header id="topbar">
+
+            <div class="topbar-title">
+                <span>💬</span>
+                <strong>MultiStream Chat</strong>
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    id="settings-button"
+                    class="icon-button"
+                    title="Configurações"
+                >
+                    ⚙️
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ÁREA DOS CHATS -->
+
+        <main id="chat-container">
+
+            <!-- Será preenchido pelo JavaScript -->
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================
+         PAINEL DE CONFIGURAÇÕES
+    ========================== -->
+
+    <div
+        id="settings-overlay"
+        class="overlay hidden"
+    >
+
+        <div class="settings-panel">
+
+            <div class="settings-header">
+
+                <div>
+                    <h2>Configurações</h2>
+                    <p>Personalize seu MultiChat.</p>
+                </div>
+
+                <button
+                    id="close-settings"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- TWITCH -->
+
+            <section class="settings-section">
+
+                <div class="settings-platform twitch-title">
+
+                    <span>🟣</span>
+
+                    <div>
+                        <strong>Twitch</strong>
+                        <small>Configurações da Twitch</small>
+                    </div>
+
+                </div>
+
+                <label for="settings-twitch">
+                    Canal
+                </label>
+
+                <input
+                    id="settings-twitch"
+                    type="text"
+                    placeholder="Canal ou link"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+                <label class="switch-label settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="settings-twitch-dark"
+                    >
+
+                    <span class="switch"></span>
+
+                    <span>
+                        Modo escuro
+                    </span>
+
+                </label>
+
+            </section>
+
+
+            <!-- KICK -->
+
+            <section class="settings-section">
+
+                <div class="settings-platform kick-title">
+
+                    <span>🟢</span>
+
+                    <div>
+                        <strong>Kick</strong>
+                        <small>Configurações da Kick</small>
+                    </div>
+
+                </div>
+
+                <label for="settings-kick">
+                    Canal
+                </label>
+
+                <input
+                    id="settings-kick"
+                    type="text"
+                    placeholder="Canal ou link"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+            </section>
+
+
+            <!-- LAYOUT -->
+
+            <section class="settings-section">
+
+                <div class="settings-platform">
+
+                    <span>↔️</span>
+
+                    <div>
+                        <strong>Layout</strong>
+                        <small>Organização dos chats</small>
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="swap-chats"
+                    class="secondary-button"
+                >
+                    ⇄ Trocar lados
+                </button>
+
+
+                <div class="width-info">
+
+                    <span>
+                        Você também pode arrastar a divisória
+                        entre os chats para alterar o tamanho.
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <div id="settings-error" class="setup-error"></div>
+
+
+            <div class="settings-actions">
+
+                <button
+                    id="cancel-settings"
+                    class="secondary-button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="save-settings"
+                    class="primary-button"
+                >
+                    Salvar alterações
+                </button>
+
+            </div>
+
+
+            <button
+                id="back-to-setup"
+                class="danger-button"
+            >
+                ← Voltar para a tela inicial
+            </button>
 
         </div>
 
@@ -80,5 +355,4 @@
     <script src="app.js"></script>
 
 </body>
-
 </html>
