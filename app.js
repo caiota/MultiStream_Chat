@@ -1,5 +1,5 @@
 /* =========================================================
-   MULTISTREAM CHAT
+   MULTISTREAM CHAT criado por Caiota :D
    Twitch + Kick
 ========================================================= */
 
@@ -1122,7 +1122,79 @@ document.addEventListener(
         }
     }
 );
+// =========================
+// HEADER AUTO-HIDE
+// =========================
 
+const topbar = document.getElementById("topbar");
+
+let headerHideTimer = null;
+let mouseNearTop = false;
+
+const HEADER_HIDE_DELAY = 3000; // 3 segundos
+
+function showHeader() {
+    if (!topbar) return;
+
+    topbar.classList.remove("header-hidden");
+
+    clearTimeout(headerHideTimer);
+
+    if (!mouseNearTop) {
+        headerHideTimer = setTimeout(() => {
+            if (!mouseNearTop) {
+                topbar.classList.add("header-hidden");
+            }
+        }, HEADER_HIDE_DELAY);
+    }
+}
+
+function hideHeader() {
+    if (!topbar || mouseNearTop) return;
+
+    clearTimeout(headerHideTimer);
+
+    headerHideTimer = setTimeout(() => {
+        if (!mouseNearTop) {
+            topbar.classList.add("header-hidden");
+        }
+    }, HEADER_HIDE_DELAY);
+}
+
+// Detecta quando o mouse chega perto do topo
+document.addEventListener("mousemove", (event) => {
+    const nearTop = event.clientY <= 25;
+
+    if (nearTop && !mouseNearTop) {
+        mouseNearTop = true;
+        showHeader();
+    }
+
+    if (!nearTop && mouseNearTop) {
+        mouseNearTop = false;
+        hideHeader();
+    }
+});
+
+// Enquanto estiver sobre o header, ele fica visível
+topbar?.addEventListener("mouseenter", () => {
+    mouseNearTop = true;
+    showHeader();
+});
+
+topbar?.addEventListener("mouseleave", () => {
+    mouseNearTop = false;
+    hideHeader();
+});
+
+// Começa a contagem assim que entrar na tela do chat
+if (chatScreen) {
+    headerHideTimer = setTimeout(() => {
+        if (!mouseNearTop) {
+            topbar?.classList.add("header-hidden");
+        }
+    }, HEADER_HIDE_DELAY);
+}
 
 /* =========================================================
    INICIAR

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>MultiStream Chat</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>MultiStream Chat - Criado por Caiota</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" id="fontAwesome" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -20,11 +21,11 @@
         <div class="setup-card">
 
             <div class="logo">
-                <div class="logo-icon">💬</div>
+                <img src="favicon.png" alt="MultiStream Chat" class="topbar-logo" style="width: 50px;height: 50px;">
 
                 <div>
-                    <h1>MultiStream Chat</h1>
-                    <p>Twitch + Kick em um só lugar.</p>
+                    <h1>MultiStream Chat - Criado por Caiota</h1>
+                    <p>Chat da Twitch e Kick em um só lugar.</p>
                 </div>
             </div>
 
@@ -35,10 +36,6 @@
                     Configure os canais que você acompanha e tenha
                     os chats da Twitch e Kick juntos em uma única tela.
                 </p>
-
-                <span class="free-badge">
-                    ✨ 100% grátis
-                </span>
             </div>
 
 
@@ -126,11 +123,10 @@
                 class="primary-button"
             >
                 Abrir MultiChat
-                <span>→</span>
             </button>
 
             <div class="setup-footer">
-                Twitch + Kick • Gratuito
+                Twitch + Kick • MultiChat para streamers e espectadores • Criado por Caiota
             </div>
 
         </div>
@@ -149,19 +145,49 @@
         <header id="topbar">
 
             <div class="topbar-title">
-                <span>💬</span>
-                <strong>MultiStream Chat</strong>
+                <img src="favicon.png" alt="MultiStream Chat" class="topbar-logo">
+                <strong>MultiStream Chat - Criado por Caiota</strong>
             </div>
+            
+    <div class="topbar-actions">
+
+        <div class="social-links">
+
+            <a
+                href="https://www.twitch.tv/caiota_"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-button twitch-social"
+                title="Twitch — caiota_"
+                aria-label="Twitch — caiota_"
+            >
+                <i class="fa-brands fa-twitch"></i>
+            </a>
+
+            <a
+                href="https://github.com/Caiota/MultiStream_Chat"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-button github-social"
+                title="GitHub — MultiStream Chat"
+                aria-label="GitHub — MultiStream Chat"
+            >
+                <i class="fa-brands fa-github"></i>
+            </a>
+
+        </div>
+
+        <div class="topbar-divider"></div>
 
             <div class="topbar-actions">
 
-                <button
-                    id="settings-button"
-                    class="icon-button"
-                    title="Configurações"
-                >
-                    ⚙️
-                </button>
+               <button
+    id="settings-button"
+    class="icon-button"
+    title="Configurações"
+>
+    <i class="fa-solid fa-gear"></i>
+</button>
 
             </div>
 
