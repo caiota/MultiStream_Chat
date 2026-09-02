@@ -1,0 +1,86 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MultiStream Chat</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <main id="app">
+
+        <section class="chat twitch-chat">
+
+            <header class="chat-header twitch-header">
+                <span>🟣</span>
+                <span id="twitch-title">Twitch</span>
+            </header>
+
+            <iframe
+                id="twitch-frame"
+                title="Twitch Chat"
+                allow="autoplay; clipboard-write"
+            ></iframe>
+
+        </section>
+
+
+        <section class="chat kick-chat">
+
+            <header class="chat-header kick-header">
+                <span>🟢</span>
+                <span id="kick-title">Kick</span>
+            </header>
+
+            <iframe
+                id="kick-frame"
+                title="Kick Chat"
+            ></iframe>
+
+        </section>
+
+    </main>
+
+
+    <div id="message">
+
+        <div id="message-content">
+
+            <h1>MultiStream Chat</h1>
+
+            <p>
+                Nenhum canal foi configurado.
+            </p>
+
+            <p>
+                Use:
+            </p>
+
+            <code>
+                ?twitch=canal&amp;kick=canal
+            </code>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
+```
