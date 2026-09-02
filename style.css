@@ -2,20 +2,19 @@
     box-sizing: border-box;
 }
 
-
 html,
 body {
-
     margin: 0;
     padding: 0;
 
     width: 100%;
     height: 100%;
 
-    background: #0e0e0e;
+    background: #0d0d0d;
     color: #ffffff;
 
     font-family:
+        Inter,
         Arial,
         Helvetica,
         sans-serif;
@@ -24,37 +23,575 @@ body {
 }
 
 
-#app {
+/* =========================
+   UTILIDADES
+========================= */
 
-    display: flex;
-
-    width: 100%;
-    height: 100%;
+.hidden {
+    display: none !important;
 }
 
 
-.chat {
+/* =========================
+   TELA DE CONFIGURAÇÃO
+========================= */
 
+.screen {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow-y: auto;
+
+    padding: 30px;
+}
+
+
+.setup-card {
+    width: 100%;
+    max-width: 560px;
+
+    background: #171717;
+
+    border: 1px solid #292929;
+
+    border-radius: 16px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+.logo-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #222222;
+
+    font-size: 25px;
+}
+
+
+.logo h1 {
+    margin: 0;
+
+    font-size: 23px;
+}
+
+
+.logo p {
+    margin: 4px 0 0;
+
+    color: #999999;
+
+    font-size: 14px;
+}
+
+
+/* WELCOME */
+
+.welcome {
+    margin-bottom: 26px;
+}
+
+
+.welcome h2 {
+    margin: 0 0 8px;
+
+    font-size: 20px;
+}
+
+
+.welcome p {
+    margin: 0;
+
+    color: #a5a5a5;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+.free-badge {
+    display: inline-block;
+
+    margin-top: 14px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #202020;
+
+    color: #bdbdbd;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   CONFIGURAÇÃO DE PLATAFORMA
+========================= */
+
+.platform-config {
+    padding: 18px;
+
+    margin-bottom: 14px;
+
+    border-radius: 12px;
+
+    background: #111111;
+
+    border: 1px solid #282828;
+}
+
+
+.platform-title {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.platform-icon {
+    font-size: 18px;
+}
+
+
+.platform-title strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+
+.platform-title small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #777777;
+
+    font-size: 11px;
+}
+
+
+.twitch-title strong {
+    color: #b184ff;
+}
+
+
+.kick-title strong {
+    color: #6dff4b;
+}
+
+
+/* LABEL */
+
+.platform-config > label,
+.settings-section > label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+
+/* INPUT */
+
+input[type="text"] {
+    width: 100%;
+    height: 42px;
+
+    padding: 0 13px;
+
+    border: 1px solid #333333;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #1b1b1b;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+
+
+input[type="text"]:focus {
+    border-color: #555555;
+
+    background: #202020;
+}
+
+
+input[type="text"]::placeholder {
+    color: #626262;
+}
+
+
+/* =========================
+   SWITCH
+========================= */
+
+.config-option {
+    margin-top: 14px;
+}
+
+
+.switch-label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #aaa;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+
+.switch-label input {
+    display: none;
+}
+
+
+.switch {
+    width: 36px;
+    height: 20px;
+
+    display: inline-block;
+
+    position: relative;
+
+    border-radius: 20px;
+
+    background: #383838;
+
+    transition: 0.2s;
+}
+
+
+.switch::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #aaa;
+
+    transition: 0.2s;
+}
+
+
+.switch-label input:checked + .switch {
+    background: #7750b8;
+}
+
+
+.switch-label input:checked + .switch::after {
+    left: 19px;
+
+    background: #ffffff;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+button {
+    font-family: inherit;
+}
+
+
+.primary-button {
+    width: 100%;
+    height: 44px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s,
+        opacity 0.15s;
+}
+
+
+.primary-button:hover {
+    opacity: 0.9;
+}
+
+
+.primary-button:active {
+    transform: scale(0.985);
+}
+
+
+.primary-button span {
+    margin-left: 6px;
+}
+
+
+.secondary-button {
+    height: 40px;
+
+    padding: 0 15px;
+
+    border: 1px solid #333333;
+
+    border-radius: 8px;
+
+    background: #1b1b1b;
+
+    color: #ddd;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+.secondary-button:hover {
+    background: #252525;
+}
+
+
+.danger-button {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 10px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+.danger-button:hover {
+    color: #aaa;
+}
+
+
+/* =========================
+   ERROS
+========================= */
+
+.setup-error {
+    min-height: 18px;
+
+    margin: 8px 0;
+
+    color: #ff7373;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.setup-footer {
+    margin-top: 18px;
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   CHAT SCREEN
+========================= */
+
+.chat-screen {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+#topbar {
+    height: 40px;
+    min-height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8px 0 14px;
+
+    background: #151515;
+
+    border-bottom: 1px solid #292929;
+}
+
+
+.topbar-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #bbb;
+
+    font-size: 12px;
+}
+
+
+.topbar-actions {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.icon-button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #aaa;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.icon-button:hover {
+    background: #292929;
+
+    color: #fff;
+}
+
+
+/* =========================
+   CHAT CONTAINER
+========================= */
+
+#chat-container {
     flex: 1;
 
     min-width: 0;
     min-height: 0;
 
     display: flex;
-    flex-direction: column;
+
+    position: relative;
+
+    overflow: hidden;
 }
 
 
-.chat + .chat {
+/* =========================
+   CHAT
+========================= */
 
-    border-left: 1px solid #2c2c2c;
+.chat-panel {
+    height: 100%;
+
+    min-width: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
 }
 
 
 .chat-header {
-
-    height: 38px;
-    min-height: 38px;
+    height: 34px;
+    min-height: 34px;
 
     display: flex;
 
@@ -65,90 +602,345 @@ body {
 
     background: #181818;
 
-    border-bottom: 1px solid #2c2c2c;
+    border-bottom: 1px solid #292929;
 
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
+
+    font-weight: 700;
 }
 
 
-.twitch-header {
-
-    color: #a970ff;
+.twitch-chat-header {
+    color: #b184ff;
 }
 
 
-.kick-header {
-
-    color: #53fc18;
+.kick-chat-header {
+    color: #6dff4b;
 }
 
 
-iframe {
-
+.chat-iframe-container {
     flex: 1;
 
+    min-height: 0;
+
+    position: relative;
+}
+
+
+.chat-iframe {
     width: 100%;
     height: 100%;
 
+    display: block;
+
     border: 0;
 
-    background: #0e0e0e;
+    background: #0d0d0d;
 }
 
 
-#message {
+/* =========================
+   DIVISÓRIA ARRASTÁVEL
+========================= */
 
+.resize-handle {
+    width: 7px;
+
+    height: 100%;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 10;
+
+    background: #1e1e1e;
+
+    cursor: col-resize;
+
+    transition: background 0.15s;
+}
+
+
+.resize-handle:hover,
+.resize-handle.dragging {
+    background: #555;
+}
+
+
+.resize-handle::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 3px;
+    height: 36px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 3px;
+
+    background: #666;
+
+    opacity: 0;
+
+    transition: opacity 0.15s;
+}
+
+
+.resize-handle:hover::after,
+.resize-handle.dragging::after {
+    opacity: 1;
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
     position: fixed;
 
     inset: 0;
 
-    display: none;
+    z-index: 100;
+
+    display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: #0e0e0e;
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.72);
 }
 
 
-#message-content {
+/* =========================
+   SETTINGS
+========================= */
 
-    text-align: center;
+.settings-panel {
+    width: 100%;
+
+    max-width: 480px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 24px;
+
+    border: 1px solid #303030;
+
+    border-radius: 14px;
+
+    background: #171717;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.6);
+}
+
+
+.settings-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+}
+
+
+.settings-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+
+.settings-header p {
+    margin: 5px 0 0;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+.close-button {
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: #222;
 
     color: #aaa;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
 }
 
 
-#message-content h1 {
-
-    margin: 0 0 10px;
+.close-button:hover {
+    background: #2c2c2c;
 
     color: #fff;
-
-    font-size: 24px;
 }
 
 
-#message-content p {
+/* =========================
+   SETTINGS SECTIONS
+========================= */
 
-    margin: 7px 0;
+.settings-section {
+    padding: 17px;
+
+    margin-bottom: 13px;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    background: #111;
 }
 
 
-code {
+.settings-platform {
+    display: flex;
 
-    display: inline-block;
+    align-items: center;
 
-    margin-top: 5px;
+    gap: 9px;
 
-    padding: 8px 12px;
+    margin-bottom: 15px;
+}
 
-    border-radius: 5px;
 
-    background: #1c1c1c;
+.settings-platform > span {
+    font-size: 17px;
+}
 
-    color: #ddd;
 
-    font-family: monospace;
+.settings-platform strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+
+.settings-platform small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #707070;
+
+    font-size: 10px;
+}
+
+
+.settings-switch {
+    margin-top: 13px;
+}
+
+
+.settings-section .secondary-button {
+    width: 100%;
+}
+
+
+.width-info {
+    margin-top: 12px;
+
+    color: #666;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   SETTINGS ACTIONS
+========================= */
+
+.settings-actions {
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 8px;
+}
+
+
+.settings-actions button {
+    flex: 1;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .screen {
+        padding: 15px;
+    }
+
+
+    .setup-card {
+        padding: 22px;
+    }
+
+
+    #topbar {
+        height: 36px;
+        min-height: 36px;
+    }
+
+
+    .chat-header {
+        height: 30px;
+        min-height: 30px;
+    }
+
+
+    .chat-panel {
+        min-width: 100px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .setup-card {
+        border: 0;
+
+        padding: 18px;
+
+        background: transparent;
+
+        box-shadow: none;
+    }
+
+
+    .settings-panel {
+        padding: 18px;
+    }
+
 }
